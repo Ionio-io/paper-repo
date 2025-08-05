@@ -42,15 +42,6 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         Ionio-Research is the dedicated research wing of Ionio Blogs.
         Discover insights, experiments, and innovations from our research team.
       </p>
-      {
-        // only display if at least one social link is enabled
-        SOCIALS.length > 0 && (
-          <div class="mt-4 flex flex-col sm:flex-row sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">Social Links:</div>
-            <Socials />
-          </div>
-        )
-      }
     </section>
 
     <Hr />
