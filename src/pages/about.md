@@ -3,35 +3,47 @@ layout: ../layouts/AboutLayout.astro
 title: "About"
 ---
 
-AstroPaper is a minimal, accessible and SEO-friendly blog theme built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
+**Ionio-Research** is the dedicated research arm of [Ionio.ai](https://www.ionio.ai), focused on building intelligent, scalable, and responsible AI-driven systems.
 
-![Astro Paper](public/astropaper-og.jpg)
+We explore real-world challenges and convert them into research-backed solutions — spanning LLMs, knowledge graphs, AI agents, multimodal systems, and explainable machine learning.
 
-AstroPaper provides a solid foundation for blogs, or even portfolios\_ with full markdown support, built-in dark mode, and a clean layout that works out-of-the-box.
+<!-- ![Ionio Research](public/astropaper-og.jpg) -->
 
-The blog posts in this theme also serve as guides, docs or example articles\_ making AstroPaper a flexible starting point for your next content-driven site.
+Our mission is to bridge the gap between academic research and production-ready AI tools, offering actionable insights, reproducible experiments, and open-source prototypes.
 
-## Features
+---
 
-AstroPaper comes with a set of useful features that make content publishing easy and effective:
+## What We Explore
 
-- SEO-friendly
-- Fast performance
-- Light & dark mode
-- Highly customizable
-- Organizable blog posts
-- Responsive & accessible
-- Static search with [PageFind](https://pagefind.app/)
-- Automatic social image generation
+Ionio-Research is not just about ideas — it’s about impact.
 
-and so much more.
+- Retrieval-Augmented Generation (RAG)
+- Graph AI & Neo4j-powered systems
+- LLM evaluation & optimization (quantization, benchmarking)
+- Autonomous AI agents & tools
+- AI for compliance, healthcare, finance, and voice interfaces
+- Multilingual and multimodal GenAI research
+- Production-ready GenAI pipelines
 
-## Show your support
+---
 
-If you like [AstroPaper](https://github.com/satnaing/astro-paper), consider giving it a star ⭐️.
+## Why We Build in Public
 
-Found a bug 🐛 or have an improvement ✨ in mind? Feel free to open an [issue](https://github.com/satnaing/astro-paper/issues), submit a [pull request](https://github.com/satnaing/astro-paper/pulls) or start a [discussion](https://github.com/satnaing/astro-paper/discussions).
+We believe open research benefits everyone.  
+Our blogs and experiments are designed to be clear, accessible, and easy to build on — whether you’re a student, startup, or enterprise AI team.
 
-If you find this theme helpful, you can also [sponsor me on GitHub](https://github.com/sponsors/satnaing) or [buy me a coffee](https://buymeacoffee.com/satnaing) to show your support — every penny counts.
+Check out our public demos, case studies, and technical articles — updated regularly by the Ionio research team.
 
-Kyay zuu! 🙏🏼
+---
+
+## Connect with Us
+
+Want to collaborate, contribute, or just explore ideas?  
+Visit [ionio.ai](https://www.ionio.ai) or reach out via our [contact page](https://www.ionio.ai/contact).
+
+We’re always open to thoughtful conversations.
+
+---
+
+> _Pioneering human-centric AI, one idea at a time._
+
