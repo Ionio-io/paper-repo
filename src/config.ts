@@ -35,7 +35,7 @@ export const SITE = {
   showArchives: true,
   showBackButton: true, // show back button in post detail
   editPost: {
-    enabled: true,
+    enabled: flase,
     text: "Edit page",
     url: "https://github.com/satnaing/astro-paper/edit/main/",
   },
