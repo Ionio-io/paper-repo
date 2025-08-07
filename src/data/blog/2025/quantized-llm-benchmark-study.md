@@ -90,7 +90,7 @@ A heatmap illustrating retention across quantization formats and benchmarks for 
 
 <figure>
   <img
-    src="/src/assets/images/fixed_full_heatmap_model_quant (2).png" 
+    src="/src/assets/images/fixed_full_heatmap_model_quant.png" 
     alt="A heatmap illustrating accuracy retention across quantization formats and benchmarks for the Qwen2.5-7B-Instruct model. The heatmap shows a monotonic decrease in accuracy as bit-width is reduced across all tasks."
   />
   <figcaption class="text-center">
@@ -116,7 +116,7 @@ Despite being a complex benchmark, BBH accuracy degrades relatively smoothly acr
 
 <figure>
   <img
-    src="/src/assets/images/BBH_bar_chart (1).png"
+    src="/src/assets/images/BBH_bar_chart.png"
     alt="A chart showing BBH accuracy across different models (Qwen2.5, DeepSeek, Mistral, LLaMA 3.3) and their respective quantization schemes. The chart demonstrates that BBH accuracy degrades relatively smoothly across quantization levels."
   />
   <figcaption class="text-center">
@@ -132,7 +132,7 @@ MMLU is more sensitive to quantization, particularly in lower-bit formats. This 
 
 <figure>
   <img
-    src="/src/assets/images/MMLU_bar_chart (1).png"
+    src="/src/assets/images/MMLU_bar_chart.png"
     alt="A chart showing MMLU accuracy across different models and quantization schemes. The chart indicates that MMLU performance is more sensitive to lower-bit quantization formats."
   />
   <figcaption class="text-center">
@@ -164,7 +164,7 @@ IFEval appears highly sensitive to quantization, especially at INT4 and GGUF Q4 
 
 <figure>
   <img
-    src="/src/assets/images/IFEval_bar_chart (1).png"
+    src="/src/assets/images/IFEval_bar_chart.png"
     alt="A chart showing IFEval accuracy across different models and quantization schemes. The chart demonstrates that instruction-following performance is particularly sensitive to aggressive quantization."
   />
   <figcaption class="text-center">
@@ -180,7 +180,7 @@ Interestingly, GSM8K shows relatively high retention even in Q4 K M and Q4 K S, 
 
 <figure>
   <img
-    src="/src/assets/images/GSM8K_bar_chart (1).png"
+    src="/src/assets/images/GSM8K_bar_chart.png"
     alt="A chart showing GSM8K accuracy across different models and quantization schemes. The chart indicates that mathematical reasoning tasks are relatively robust to quantization."
   />
   <figcaption class="text-center">
@@ -209,7 +209,7 @@ The sweet spot appears to be **Q5 K M** or **Q8 0**, where we retain ∼95–99%
 
 <figure>
   <img
-    src="/src/assets/images/fixed_bar_benchmark_quant (2).png"
+    src="/src/assets/images/fixed_bar_benchmark_quant.png"
     alt="A chart showing the benchmark-wise average accuracy by quantization format, averaged across all models. This chart provides a high-level view of how different quantization formats perform on average."
   />
   <figcaption class="text-center">
