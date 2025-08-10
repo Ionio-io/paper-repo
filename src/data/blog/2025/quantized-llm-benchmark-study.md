@@ -18,8 +18,6 @@ description: This study benchmarks quantized variants of LLMs (Qwen2.5, DeepSeek
 
 ## Abstract
 
-![AstroPaper v3](@/assets/images/AstroPaper-v3.png)
-
 Quantization has emerged as a critical method for deploying large language models (LLMs) in constrained environments. This study benchmarks quantized variants of Qwen2.5, DeepSeek, Mistral, and LLaMA 3.3 across five diverse tasks: MMLU, GSM8K, BBH, C-Eval, and IFEval, spanning domains from math reasoning to instruction following. We evaluate each model under multiple quantization schemes (BF16, GPTQ-INT8, INT4, AWQ, GGUF, including Q3 K M, Q4 K M, Q5 K M, and Q8 0) to assess the trade-offs in accuracy retention and task robustness. Our findings offer actionable insights into quantization format selection for production use, highlighting that **Q5 K M** and **GPTQ-INT8** offer optimal trade-offs for most domains, while **AWQ** and lower-bit GGUF formats should be used cautiously.
 
 ## 1 Introduction
@@ -92,7 +90,7 @@ A heatmap illustrating retention across quantization formats and benchmarks for 
 
 <figure>
   <img
-    src="/src/assets/images/fixed_full_heatmap_model_quant.png" 
+    src="@/src/assets/images/fixed_full_heatmap_model_quant.png" 
     alt="A heatmap illustrating accuracy retention across quantization formats and benchmarks for the Qwen2.5-7B-Instruct model. The heatmap shows a monotonic decrease in accuracy as bit-width is reduced across all tasks."
   />
   <figcaption class="text-center">
@@ -118,7 +116,7 @@ Despite being a complex benchmark, BBH accuracy degrades relatively smoothly acr
 
 <figure>
   <img
-    src="/src/assets/images/BBH_bar_chart.png"
+    src="@/src/assets/images/BBH_bar_chart.png"
     alt="A chart showing BBH accuracy across different models (Qwen2.5, DeepSeek, Mistral, LLaMA 3.3) and their respective quantization schemes. The chart demonstrates that BBH accuracy degrades relatively smoothly across quantization levels."
   />
   <figcaption class="text-center">
@@ -134,7 +132,7 @@ MMLU is more sensitive to quantization, particularly in lower-bit formats. This 
 
 <figure>
   <img
-    src="/src/assets/images/MMLU_bar_chart.png"
+    src="@/src/assets/images/MMLU_bar_chart.png"
     alt="A chart showing MMLU accuracy across different models and quantization schemes. The chart indicates that MMLU performance is more sensitive to lower-bit quantization formats."
   />
   <figcaption class="text-center">
@@ -150,7 +148,7 @@ C-Eval results show a noticeable drop in all formats except GPTQ-INT8. Q4 K M se
 
 <figure>
   <img
-    src="/src/assets/images/C-Eval_bar_chart.png"
+    src="@/src/assets/images/C-Eval_bar_chart.png"
     alt="A chart showing C-Eval accuracy across different models and quantization schemes. The data reveals a significant drop in performance for lower-bit formats, highlighting sensitivity to multilingual tasks."
   />
   <figcaption class="text-center">
@@ -166,7 +164,7 @@ IFEval appears highly sensitive to quantization, especially at INT4 and GGUF Q4 
 
 <figure>
   <img
-    src="/src/assets/images/IFEval_bar_chart.png"
+    src="@/src/assets/images/IFEval_bar_chart.png"
     alt="A chart showing IFEval accuracy across different models and quantization schemes. The chart demonstrates that instruction-following performance is particularly sensitive to aggressive quantization."
   />
   <figcaption class="text-center">
@@ -182,7 +180,7 @@ Interestingly, GSM8K shows relatively high retention even in Q4 K M and Q4 K S, 
 
 <figure>
   <img
-    src="/src/assets/images/GSM8K_bar_chart.png"
+    src="@/src/assets/images/GSM8K_bar_chart.png"
     alt="A chart showing GSM8K accuracy across different models and quantization schemes. The chart indicates that mathematical reasoning tasks are relatively robust to quantization."
   />
   <figcaption class="text-center">
@@ -211,7 +209,7 @@ The sweet spot appears to be **Q5 K M** or **Q8 0**, where we retain ∼95–99%
 
 <figure>
   <img
-    src="/src/assets/images/fixed_bar_benchmark_quant.png"
+    src="@/src/assets/images/fixed_bar_benchmark_quant.png"
     alt="A chart showing the benchmark-wise average accuracy by quantization format, averaged across all models. This chart provides a high-level view of how different quantization formats perform on average."
   />
   <figcaption class="text-center">
@@ -372,4 +370,3 @@ Leveraging our benchmark methodology and open-source tooling can help you evalua
 [8] Mistral AI. Mistral 7B Instruct Models. Hugging Face. https://huggingface.co/mistralai
 [9] Meta AI. LLaMA 3.3 Models. Meta Blog. https://ai.meta.com/blog/llama-3
 [10] Pan, Q., et al. AutoGPTQ: Quantization Toolkit for Large Language Models. GitHub. https://github.com/PanQiWei/AutoGPTQ
-
