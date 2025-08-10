@@ -76,8 +76,6 @@ To ensure our results reflect real-world usage patterns, we adopted a dual-mode 
 * **Zero-Shot Deterministic Decoding (Temperature = 0)**: This mirrors use cases where consistency and predictability are critical, like legal document drafting.
 * **Multi-Pass Inference with Sampling (Temperature = 0.3)**: This simulates typical chatbot scenarios where mild randomness improves fluency and creativity. This method also allows us to capture robustness, identifying formats that remain stable under light sampling noise.
 
----
-
 ## 3 Results and Observations
 
 ### 3.1 Quantization Accuracy Retention Analysis
@@ -100,15 +98,11 @@ There is a clear, monotonic decrease in accuracy as bit-width reduces:
 
 These findings are consistent with existing literature suggesting reduced bit-width quantization impairs instruction-level coherence and factual retrieval.
 
----
-
 #### BBH (Logical Reasoning)
 
 Despite being a complex benchmark, BBH accuracy degrades relatively smoothly across formats. Even in Q4 K M, the model retains ∼90% of its BF16 accuracy. This implies that quantization-induced degradation in BBH is less catastrophic, likely due to the structural consistency of logical patterns.
 
 ![Figure 2: BBH Accuracy Across Models and Quantization Schemes](@/assets/images/BBH_bar_chart.png)
-
----
 
 #### MMLU (General Knowledge)
 
@@ -159,8 +153,6 @@ From these observations, we can conclude:
 * Instruction-following and multilingual tasks (**IFEval**, **C-Eval**) are the most vulnerable to aggressive quantization.
 * **AWQ**, despite its efficiency, requires caution in contexts requiring high determinism.
 * Tasks like math reasoning (**GSM8K**) remain robust even under Q4 formats, making these a viable option in low-resource deployments.
-
----
 
 ## 4 Task-Specific Recommendations
 
@@ -216,16 +208,12 @@ One of the core motivations behind this benchmark study is to answer a simple bu
     * **GPTQ-INT8** for accuracy-sensitive reasoning
 * **Rationale**: Reasoning chains are structurally encoded, allowing models to retain capability under quantization—a promising insight for building lightweight decision-making agents.
 
----
-
 ### 4.6 Cross-Cutting Observation
 
 Across all use cases, two general trends hold:
 
 * **Q5 K M** is consistently the safest GGUF format, retaining >95% accuracy while enabling fast, low-memory inference, making it the default recommendation when speed and fidelity must be balanced.
 * **AWQ** is fast, but unstable in high-instruction or multilingual domains, so its use should be bounded to low-stakes or latency-prioritized tasks.
-
----
 
 ## 5 Comparative Model Analysis
 
@@ -255,8 +243,6 @@ Among all models evaluated, Mistral-7B-Instruct emerged as the most efficient in
 
 **Conclusion**: Mistral-7B is perfect for developers needing a compact, reasonably accurate LLM that performs acceptably across instruction-following and general Q&A. It is highly suitable for on-device agents, real-time chatbots, and initial production pilots.
 
----
-
 ## 6 Study Limitations and Future Directions
 
 Despite covering a wide range of models, benchmarks, and quantization formats, this evaluation is not without limitations. We highlight them here both for transparency and to guide future iterations of this benchmark.
@@ -276,8 +262,6 @@ This study prioritized five representative benchmarks: BBH, MMLU, C-Eval, IFEval
 ### 6.4 Quantization-Aware Fine-Tuning (QLoRA, GPTQ-LoRA)
 
 We evaluated zero-shot quantized performance. However, some formats like GPTQ can recover accuracy when paired with quantization-aware fine-tuning (e.g., GPTQ-LoRA). Exploring post-quantization adaptation is an important avenue for improving quality in production deployments.
-
----
 
 ## 7 Conclusion
 
