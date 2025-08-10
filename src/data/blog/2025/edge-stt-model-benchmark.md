@@ -7,10 +7,10 @@ slug: edge-stt-model-benchmark
 featured: true
 draft: false
 tags:
-  - AI
-  - ASR
-  - Whisper
-  - Benchmarking
+  - AI
+  - ASR
+  - Whisper
+  - Benchmarking
 description: A practical and neutral benchmark of seven leading STT models, including open-source and proprietary APIs, based on real-world transcription challenges and diverse audio.
 ---
 
