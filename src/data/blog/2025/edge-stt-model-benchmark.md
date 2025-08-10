@@ -7,10 +7,10 @@ slug: edge-stt-model-benchmark
 featured: true
 draft: false
 tags:
-  - AI
-  - ASR
-  - Whisper
-  - Benchmarking
+  - AI
+  - ASR
+  - Whisper
+  - Benchmarking
 description: A practical and neutral benchmark of seven leading STT models, including open-source and proprietary APIs, based on real-world transcription challenges and diverse audio.
 ---
 
@@ -38,8 +38,8 @@ Our evaluation focused on real-world conditions that present significant challen
 * **Total audio clips:** 58
 * **Duration:** 5 to 40 seconds per clip
 * **Categories:**
-    * **Clean Speech:** Recorded in quiet, echo-free environments.
-    * **Noisy Speech:** Includes real-world ambient noise such as crowd chatter, movement, room reverb, or mild background static.
+    * **Clean Speech:** Recorded in quiet, echo-free environments.
+    * **Noisy Speech:** Includes real-world ambient noise such as crowd chatter, movement, room reverb, or mild background static.
 * **Speakers:** Human-recorded audio clips sourced from workers using Ionio, covering diverse accents and speaking styles.
 * **Format:** WAV, 16 kHz, mono-channel (standard for most ASR systems).
 
@@ -111,25 +111,9 @@ For clean audio conditions, **Granite-Speech-3.3** emerged as the standout perfo
 
 The introduction of background noise revealed interesting shifts in model robustness. **Granite-Speech-3.3** maintained its leading position with **15.72% WER**, demonstrating exceptional noise resilience. Distil-Whisper showed strong noise handling capabilities, achieving 21.26% WER, while standard Whisper experienced more significant degradation, jumping to 29.80% WER. Wav2Vec2 remained the weakest performer at 54.69% WER.
 
-<figure>
-  <img
-    src="/src/assets/images/figure-1-open-source-cer.png"
-    alt="A chart showing CER performance across clean and noisy audio for open-source models."
-  />
-  <figcaption class="text-center">
-    Figure 1: CER performance across clean and noisy audio for open-source models.
-  </figcaption>
-</figure>
+![Figure 1: CER performance across clean and noisy audio for open-source models.](@/assets/images/figure-1-open-source-cer.png)
 
-<figure>
-  <img
-    src="/src/assets/images/figure-2-wer-degradation.png"
-    alt="A chart comparing WER degradation from clean to noisy conditions for open-source models."
-  />
-  <figcaption class="text-center">
-    Figure 2: Comparison of WER degradation from clean to noisy conditions for open-source models.
-  </figcaption>
-</figure>
+![Figure 2: Comparison of WER degradation from clean to noisy conditions for open-source models.](@/assets/images/figure-2-wer-degradation.png)
 
 ### 3.3 Error Pattern Analysis
 
@@ -137,77 +121,29 @@ The introduction of background noise revealed interesting shifts in model robust
 
 **Granite-Speech-3.3** demonstrated minimal insertion errors (0.828 clean, 0.862 noisy), making it suitable for real-time systems that demand accuracy. Whisper, however, showed a sharp increase in insertion errors under noisy conditions, reaching 2.362.
 
-<figure>
-  <img
-    src="/src/assets/images/figure-3-insertion-errors.png"
-    alt="A chart showing insertion error rates for open-source models across clean and noisy conditions."
-  />
-  <figcaption class="text-center">
-    Figure 3: Insertion Error Rates for open-source models across clean and noisy conditions.
-  </figcaption>
-</figure>
+![Figure 3: Insertion Error Rates for open-source models across clean and noisy conditions.](@/assets/images/figure-3-insertion-errors.png)
 
 #### 3.3.2 Deletion Errors
 
 **Parakeet** led the field in this category with a deletion error rate of just 0.414 under clean conditions, making it well-suited for controlled environments where completeness is non-negotiable. Wav2Vec2 had a deletion rate of 8.897 under noise, suggesting a frequent tendency to drop entire phrases.
 
-<figure>
-  <img
-    src="/src/assets/images/figure-4-deletion-errors.png"
-    alt="A chart showing deletion error rates for open-source models across clean and noisy conditions."
-  />
-  <figcaption class="text-center">
-    Figure 4: Deletion Error Rates for open-source models across clean and noisy conditions.
-  </figcaption>
-</figure>
+![Figure 4: Deletion Error Rates for open-source models across clean and noisy conditions.](@/assets/images/figure-4-deletion-errors.png)
 
 #### 3.3.3 Substitution Errors
 
 **Granite-Speech-3.3** again led with the lowest substitution rates, scoring 2.276 in clean and 3.276 in noisy conditions. Distil-Whisper delivered moderate substitution rates. Wav2Vec2’s substitution error rate ballooned to 13.879 under noisy conditions.
 
-<figure>
-  <img
-    src="/src/assets/images/figure-5-substitution-errors.png"
-    alt="A chart showing substitution error rates for open-source models across clean and noisy conditions."
-  />
-  <figcaption class="text-center">
-    Figure 5: Substitution Error Rates for open-source models across clean and noisy conditions.
-  </figcaption>
-</figure>
+![Figure 5: Substitution Error Rates for open-source models across clean and noisy conditions.](@/assets/images/figure-5-substitution-errors.png)
 
-<figure>
-  <img
-    src="/src/assets/images/figure-6-average-errors.png"
-    alt="A chart showing average insertions, deletions, and substitutions across clean and noisy audio for open-source models."
-  />
-  <figcaption class="text-center">
-    Figure 6: Average insertions, deletions, and substitutions across clean and noisy audio for open-source models.
-  </figcaption>
-</figure>
+![Figure 6: Average insertions, deletions, and substitutions across clean and noisy audio for open-source models.](@/assets/images/figure-6-average-errors.png)
 
 ### 3.4 Character vs Word Error Analysis
 
 The correlation between WER and CER showed a strong alignment across models. **Granite-Speech-3.3** achieved the best CER performance (10.26% overall), while **Distil-Whisper** led in pure CER metrics (10.14%), demonstrating excellent character-level precision.
 
-<figure>
-  <img
-    src="/src/assets/images/figure-7-cer-performance.png"
-    alt="A chart showing Character Error Rate (CER) performance across clean and noisy audio for open-source models."
-  />
-  <figcaption class="text-center">
-    Figure 7: Character Error Rate (CER) performance across clean and noisy audio for open-source models.
-  </figcaption>
-</figure>
+![Figure 7: Character Error Rate (CER) performance across clean and noisy audio for open-source models.](@/assets/images/figure-7-cer-performance.png)
 
-<figure>
-  <img
-    src="/src/assets/images/figure-8-cer-degradation.png"
-    alt="A chart comparing CER degradation from clean to noisy conditions for open-source models."
-  />
-  <figcaption class="text-center">
-    Figure 8: Comparison of CER degradation from clean to noisy conditions for open-source models.
-  </figcaption>
-</figure>
+![Figure 8: Comparison of CER degradation from clean to noisy conditions for open-source models.](@/assets/images/figure-8-cer-degradation.png)
 
 ## 4 Benchmark Analysis Results for All Models
 
@@ -219,15 +155,7 @@ In clean audio conditions, **Granite-Speech-3.3**’s exceptional **7.9% WER** p
 
 **Granite-Speech-3.3** maintains its dominance with an **11.5% WER** in noisy conditions, experiencing only a modest 3.5% increase from clean audio. AssemblyAI’s 14.1% WER also demonstrates notable robustness. Wav2Vec2’s drastic jump to 49.6% WER reveals a critical weakness.
 
-<figure>
-  <img
-    src="/src/assets/images/figure-9-wer-all-models.png"
-    alt="A chart showing WER performance across clean and noisy audio for all evaluated models."
-  />
-  <figcaption class="text-center">
-    Figure 9: WER performance across clean and noisy audio for all models.
-  </figcaption>
-</figure>
+![Figure 9: WER performance across clean and noisy audio for all evaluated models.](@/assets/images/figure-9-wer-all-models.png)
 
 ### 4.3 Error Pattern Analysis (All Models)
 
@@ -238,15 +166,7 @@ In clean audio conditions, **Granite-Speech-3.3**’s exceptional **7.9% WER** p
 
 ### 4.4 Overall Model Rankings
 
-<figure>
-  <img
-    src="/src/assets/images/figure-10-overall-wer.png"
-    alt="A chart showing overall WER performance across all models, with average WER across clean and noisy conditions."
-  />
-  <figcaption class="text-center">
-    Figure 10: Overall WER performance across all models, showing average WER across clean and noisy conditions.
-  </figcaption>
-</figure>
+![Figure 10: Overall WER performance across all models, showing average WER across clean and noisy conditions.](@/assets/images/figure-10-overall-wer.png)
 
 | Rank | Model | Average WER |
 | :--- | :--- | :--- |
@@ -273,19 +193,19 @@ In clean audio conditions, **Granite-Speech-3.3**’s exceptional **7.9% WER** p
 ## 6 Key Insights and Use Case Recommendations
 
 * **Granite-Speech-3.3**:
-    * **Best for**: Mission-critical tasks (medical transcription, legal documentation, financial services, live accessibility) due to its precision and adaptability.
+    * **Best for**: Mission-critical tasks (medical transcription, legal documentation, financial services, live accessibility) due to its precision and adaptability.
 * **AssemblyAI**:
-    * **Best for**: Live captioning, voice commands. Its noise resilience suits real-time uses.
+    * **Best for**: Live captioning, voice commands. Its noise resilience suits real-time uses.
 * **Parakeet**:
-    * **Best for**: Medical transcription and accessibility applications where missing words are unacceptable.
+    * **Best for**: Medical transcription and accessibility applications where missing words are unacceptable.
 * **Distil-Whisper**:
-    * **Best for**: Educational content transcription, podcast/media subtitling, and live captioning where cost or speed may prioritize over perfection.
+    * **Best for**: Educational content transcription, podcast/media subtitling, and live captioning where cost or speed may prioritize over perfection.
 * **Deepgram**:
-    * **Best for**: Educational content, podcasts.
+    * **Best for**: Educational content, podcasts.
 * **Whisper**:
-    * **Best for**: Interview documentation, meeting notes, and non-critical meetings.
+    * **Best for**: Interview documentation, meeting notes, and non-critical meetings.
 * **Wav2Vec2**:
-    * **Not recommended** for production use due to unreliability, especially in noisy environments.
+    * **Not recommended** for production use due to unreliability, especially in noisy environments.
 
 ## 7 Conclusion and Future Work
 
