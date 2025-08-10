@@ -18,6 +18,8 @@ description: This study benchmarks quantized variants of LLMs (Qwen2.5, DeepSeek
 
 ## Abstract
 
+![AstroPaper v3](@/assets/images/AstroPaper-v3.png)
+
 Quantization has emerged as a critical method for deploying large language models (LLMs) in constrained environments. This study benchmarks quantized variants of Qwen2.5, DeepSeek, Mistral, and LLaMA 3.3 across five diverse tasks: MMLU, GSM8K, BBH, C-Eval, and IFEval, spanning domains from math reasoning to instruction following. We evaluate each model under multiple quantization schemes (BF16, GPTQ-INT8, INT4, AWQ, GGUF, including Q3 K M, Q4 K M, Q5 K M, and Q8 0) to assess the trade-offs in accuracy retention and task robustness. Our findings offer actionable insights into quantization format selection for production use, highlighting that **Q5 K M** and **GPTQ-INT8** offer optimal trade-offs for most domains, while **AWQ** and lower-bit GGUF formats should be used cautiously.
 
 ## 1 Introduction
@@ -370,3 +372,4 @@ Leveraging our benchmark methodology and open-source tooling can help you evalua
 [8] Mistral AI. Mistral 7B Instruct Models. Hugging Face. https://huggingface.co/mistralai
 [9] Meta AI. LLaMA 3.3 Models. Meta Blog. https://ai.meta.com/blog/llama-3
 [10] Pan, Q., et al. AutoGPTQ: Quantization Toolkit for Large Language Models. GitHub. https://github.com/PanQiWei/AutoGPTQ
+
