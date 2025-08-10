@@ -17,7 +17,6 @@ description: This study benchmarks quantized variants of LLMs (Qwen2.5, DeepSeek
 ## Table of contents
 
 ## Abstract
-![AstroPaper v3](@/assets/images/BBH_bar_chart.png)
 
 Quantization has emerged as a critical method for deploying large language models (LLMs) in constrained environments. This study benchmarks quantized variants of Qwen2.5, DeepSeek, Mistral, and LLaMA 3.3 across five diverse tasks: MMLU, GSM8K, BBH, C-Eval, and IFEval, spanning domains from math reasoning to instruction following. We evaluate each model under multiple quantization schemes (BF16, GPTQ-INT8, INT4, AWQ, GGUF, including Q3 K M, Q4 K M, Q5 K M, and Q8 0) to assess the trade-offs in accuracy retention and task robustness. Our findings offer actionable insights into quantization format selection for production use, highlighting that **Q5 K M** and **GPTQ-INT8** offer optimal trade-offs for most domains, while **AWQ** and lower-bit GGUF formats should be used cautiously.
 
@@ -89,15 +88,7 @@ Each quantization format—ranging from BF16 (baseline) to low-bit variants like
 
 A heatmap illustrating retention across quantization formats and benchmarks for Qwen2.5-7B-Instruct is presented below.
 
-<figure>
-  <img
-    src="/src/assets/images/fixed_full_heatmap_model_quant.png" 
-    alt="A heatmap illustrating accuracy retention across quantization formats and benchmarks for the Qwen2.5-7B-Instruct model. The heatmap shows a monotonic decrease in accuracy as bit-width is reduced across all tasks."
-  />
-  <figcaption class="text-center">
-    Figure 1: Retention Heatmap Across Quantization Formats and Benchmarks for Qwen2.5-7B-Instruct
-  </figcaption>
-</figure>
+![Figure 1: Retention Heatmap Across Quantization Formats and Benchmarks for Qwen2.5-7B-Instruct](@/assets/images/fixed_full_heatmap_model_quant.png)
 
 ### 3.2 Quantization Effects Across Benchmarks
 
@@ -115,15 +106,7 @@ These findings are consistent with existing literature suggesting reduced bit-wi
 
 Despite being a complex benchmark, BBH accuracy degrades relatively smoothly across formats. Even in Q4 K M, the model retains ∼90% of its BF16 accuracy. This implies that quantization-induced degradation in BBH is less catastrophic, likely due to the structural consistency of logical patterns.
 
-<figure>
-  <img
-    src="/src/assets/images/BBH_bar_chart.png"
-    alt="A chart showing BBH accuracy across different models (Qwen2.5, DeepSeek, Mistral, LLaMA 3.3) and their respective quantization schemes. The chart demonstrates that BBH accuracy degrades relatively smoothly across quantization levels."
-  />
-  <figcaption class="text-center">
-    Figure 2: BBH Accuracy Across Models and Quantization Schemes
-  </figcaption>
-</figure>
+![Figure 2: BBH Accuracy Across Models and Quantization Schemes](@/assets/images/BBH_bar_chart.png)
 
 ---
 
@@ -131,65 +114,24 @@ Despite being a complex benchmark, BBH accuracy degrades relatively smoothly acr
 
 MMLU is more sensitive to quantization, particularly in lower-bit formats. This suggests that factual retrieval tasks depend heavily on the precision of internal embeddings and attention weights, making GGUF formats below Q5 K M risky for knowledge-intensive applications.
 
-<figure>
-  <img
-    src="/src/assets/images/MMLU_bar_chart.png"
-    alt="A chart showing MMLU accuracy across different models and quantization schemes. The chart indicates that MMLU performance is more sensitive to lower-bit quantization formats."
-  />
-  <figcaption class="text-center">
-    Figure 3: MMLU Accuracy Across Models and Quantization Schemes
-  </figcaption>
-</figure>
-
----
+![Figure 3: MMLU Accuracy Across Models and Quantization Schemes](@/assets/images/MMLU_bar_chart.png)
 
 #### C-Eval (Multilingual Academic Reasoning)
 
 C-Eval results show a noticeable drop in all formats except GPTQ-INT8. Q4 K M sees almost 15–20% reduction in retention, indicating that tokenizer-alignment and language-specific embeddings suffer under aggressive quantization. This is especially critical in localized deployments in Asia or multilingual enterprise systems.
-
-<figure>
-  <img
-    src="/src/assets/images/C-Eval_bar_chart.png"
-    alt="A chart showing C-Eval accuracy across different models and quantization schemes. The data reveals a significant drop in performance for lower-bit formats, highlighting sensitivity to multilingual tasks."
-  />
-  <figcaption class="text-center">
-    Figure 4: C-Eval Accuracy Across Models and Quantization Schemes
-  </figcaption>
-</figure>
-
----
+![Figure 4: C-Eval Accuracy Across Models and Quantization Schemes](@/assets/images/C-Eval_bar_chart.png)
 
 #### IFEval (Instruction Following)
 
 IFEval appears highly sensitive to quantization, especially at INT4 and GGUF Q4 levels. Models show more than 10% accuracy loss, and sometimes erratic behavior. This supports the hypothesis that instruction-following quality depends not only on token predictions but also on decoder alignment, which becomes unstable in very low-bit formats.
 
-<figure>
-  <img
-    src="/src/assets/images/IFEval_bar_chart.png"
-    alt="A chart showing IFEval accuracy across different models and quantization schemes. The chart demonstrates that instruction-following performance is particularly sensitive to aggressive quantization."
-  />
-  <figcaption class="text-center">
-    Figure 5: IFEval Accuracy Across Models and Quantization Schemes
-  </figcaption>
-</figure>
-
----
+![Figure 5: IFEval Accuracy Across Models and Quantization Schemes](@/assets/images/IFEval_bar_chart.png)
 
 #### GSM8K (Mathematical Reasoning)
 
 Interestingly, GSM8K shows relatively high retention even in Q4 K M and Q4 K S, with ∼84–87% of baseline accuracy. This implies that step-by-step arithmetic tasks are structurally resilient to quantization, especially in models with strong reasoning architectures like Qwen.
 
-<figure>
-  <img
-    src="/src/assets/images/GSM8K_bar_chart.png"
-    alt="A chart showing GSM8K accuracy across different models and quantization schemes. The chart indicates that mathematical reasoning tasks are relatively robust to quantization."
-  />
-  <figcaption class="text-center">
-    Figure 6: GSM8K Accuracy Across Models and Quantization Schemes
-  </figcaption>
-</figure>
-
----
+![Figure 6: GSM8K Accuracy Across Models and Quantization Schemes](@/assets/images/GSM8K_bar_chart.png)
 
 ### 3.2.3 AWQ and GGUF: Compression vs. Consistency
 
@@ -208,15 +150,7 @@ The sweet spot appears to be **Q5 K M** or **Q8 0**, where we retain ∼95–99%
 | **GSM8K** | 96.4% | 93.2% | 86.2% | 84.2% |
 *Retention % indicates how much of the full-precision BF16 model’s accuracy was preserved after quantization.*
 
-<figure>
-  <img
-    src="/src/assets/images/fixed_bar_benchmark_quant.png"
-    alt="A chart showing the benchmark-wise average accuracy by quantization format, averaged across all models. This chart provides a high-level view of how different quantization formats perform on average."
-  />
-  <figcaption class="text-center">
-    Figure 7: Benchmark-Wise Average Accuracy by Quantization Format (Across All Models, Averaged)
-  </figcaption>
-</figure>
+![Figure 7: Benchmark-Wise Average Accuracy by Quantization Format (Across All Models, Averaged)](@/assets/images/fixed_bar_benchmark_quant.png)
 
 From these observations, we can conclude:
 
