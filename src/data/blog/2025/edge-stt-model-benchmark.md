@@ -3,6 +3,8 @@ author: Ionio AI Research Team
 pubDatetime: 2025-07-30T00:00:00Z
 modDatetime: 2025-07-30T00:00:00Z
 title: 2025 Edge Speech-to-Text Model Benchmark
+writer: Manideep
+editor: Pranav Patel
 slug: edge-stt-model-benchmark
 featured: true
 draft: false
@@ -212,3 +214,4 @@ In clean audio conditions, **Granite-Speech-3.3**’s exceptional **7.9% WER** p
 This benchmark provides a comprehensive and unbiased evaluation of leading speech-to-text models under realistic conditions. Our findings clearly indicate that **IBM Granite-Speech-3.3** stands out as the top performer, demonstrating exceptional accuracy and robustness across both clean and noisy audio environments. **Distil-Whisper** emerges as a strong contender among open-source models, offering a compelling balance of accuracy and efficiency. Conversely, **Wav2Vec2** consistently underperformed, suggesting it is not yet ready for production-grade deployment in scenarios demanding high accuracy.
 
 While this benchmark provides valuable guidance, it also highlights areas for future research. Expanding the dataset to include a wider variety of accents, conversational speech with overlapping speakers, and domain-specific vocabulary would further enhance the realism and applicability of such evaluations. Additionally, incorporating metrics for inference speed, latency, and computational efficiency would provide a more complete picture for real-time and edge computing applications. For organizations seeking to implement STT solutions, understanding these nuanced performance characteristics is paramount.
+
