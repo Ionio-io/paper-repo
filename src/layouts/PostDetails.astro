@@ -24,7 +24,9 @@ const { post, posts } = Astro.props;
 
 const {
   title,
-  author,
+  writer,
+  editor,
+  author, // fallback if writer missing
   description,
   ogImage: initOgImage,
   canonicalURL,
@@ -38,27 +40,22 @@ const {
 const { Content } = await render(post);
 
 let ogImageUrl: string | undefined;
-
-// Determine OG image source
 if (typeof initOgImage === "string") {
-  ogImageUrl = initOgImage; // Remote OG image (absolute URL)
+  ogImageUrl = initOgImage;
 } else if (initOgImage?.src) {
-  ogImageUrl = initOgImage.src; // Local asset
+  ogImageUrl = initOgImage.src;
 }
-
-// Use dynamic OG image if enabled and no remote|local ogImage
 if (!ogImageUrl && SITE.dynamicOgImage) {
   ogImageUrl = `${getPath(post.id, post.filePath)}/index.png`;
 }
+const ogImage = ogImageUrl ? new URL(ogImageUrl, Astro.url.origin).href : undefined;
 
-// Resolve OG image URL (or fallback to SITE.ogImage / default `og.png`)
-const ogImage = ogImageUrl
-  ? new URL(ogImageUrl, Astro.url.origin).href
-  : undefined;
+// Meta <head>
+const authorMeta = [writer, editor].filter(Boolean).join(" & ") || author || undefined;
 
 const layoutProps = {
   title: `${title} | ${SITE.title}`,
-  author,
+  author: authorMeta,
   description,
   pubDatetime,
   modDatetime,
@@ -67,16 +64,17 @@ const layoutProps = {
   scrollSmooth: true,
 };
 
-/* ========== Prev/Next Posts ========== */
+// Safe values
+const writerName = writer || author || "";
+const editorName = editor || "";
 
+/* ========== Prev/Next Posts ========== */
 const allPosts = posts.map(({ data: { title }, id, filePath }) => ({
   id,
   title,
   filePath,
 }));
-
 const currentPostIndex = allPosts.findIndex(a => a.id === post.id);
-
 const prevPost = currentPostIndex !== 0 ? allPosts[currentPostIndex - 1] : null;
 const nextPost =
   currentPostIndex !== allPosts.length ? allPosts[currentPostIndex + 1] : null;
@@ -99,17 +97,41 @@ const nextPost =
     >
       {title}
     </h1>
-    <div class="my-2 flex items-center gap-2">
+
+    <!-- Meta row -->
+    <div class="my-2 flex flex-wrap items-center gap-2">
       <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" />
+
+      {writerName && (
+        <span class="inline-flex items-center gap-1 rounded-full border border-muted bg-muted px-2.5 py-1 text-xs font-semibold text-foreground/90">
+          <span class="rounded-full bg-accent/10 px-1.5 py-0.5 text-[10px] uppercase tracking-wide">
+            Writer
+          </span>
+          <span>{writerName}</span>
+        </span>
+      )}
+
+      {editorName && (
+        <span class="inline-flex items-center gap-1 rounded-full border border-muted bg-muted px-2.5 py-1 text-xs font-semibold text-foreground/90">
+          <span class="rounded-full bg-accent/10 px-1.5 py-0.5 text-[10px] uppercase tracking-wide">
+            Editor
+          </span>
+          <span>{editorName}</span>
+        </span>
+      )}
+
       <span
         aria-hidden="true"
         class:list={[
           "max-sm:hidden",
           { hidden: !SITE.editPost.enabled || hideEditPost },
-        ]}>|</span
+        ]}
       >
+        |
+      </span>
       <EditPost {hideEditPost} {post} class="max-sm:hidden" />
     </div>
+
     <article
       id="article"
       class="app-prose mx-auto mt-8 max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"
@@ -118,7 +140,6 @@ const nextPost =
     </article>
 
     <hr class="my-8 border-dashed" />
-
     <EditPost class="sm:hidden" {hideEditPost} {post} />
 
     <ul class="mt-4 mb-8 sm:my-8">
@@ -126,12 +147,11 @@ const nextPost =
     </ul>
 
     <BackToTopButton />
-
     <ShareLinks />
 
     <hr class="my-6 border-dashed" />
 
-    <!-- Previous/Next Post Buttons -->
+    <!-- Prev/Next -->
     <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2">
       {
         prevPost && (
@@ -167,29 +187,18 @@ const nextPost =
 </Layout>
 
 <script is:inline data-astro-rerun>
-  /** Create a progress indicator
-   *  at the top */
   function createProgressBar() {
-    // Create the main container div
-    const progressContainer = document.createElement("div");
-    progressContainer.className =
+    const wrap = document.createElement("div");
+    wrap.className =
       "progress-container fixed top-0 z-10 h-1 w-full bg-background";
-
-    // Create the progress bar div
-    const progressBar = document.createElement("div");
-    progressBar.className = "progress-bar h-1 w-0 bg-accent";
-    progressBar.id = "myBar";
-
-    // Append the progress bar to the progress container
-    progressContainer.appendChild(progressBar);
-
-    // Append the progress container to the document body or any other desired parent element
-    document.body.appendChild(progressContainer);
+    const bar = document.createElement("div");
+    bar.className = "progress-bar h-1 w-0 bg-accent";
+    bar.id = "myBar";
+    wrap.appendChild(bar);
+    document.body.appendChild(wrap);
   }
   createProgressBar();
 
-  /** Update the progress bar
-   *  when user scrolls */
   function updateScrollProgress() {
     document.addEventListener("scroll", () => {
       const winScroll =
@@ -198,18 +207,12 @@ const nextPost =
         document.documentElement.scrollHeight -
         document.documentElement.clientHeight;
       const scrolled = (winScroll / height) * 100;
-      if (document) {
-        const myBar = document.getElementById("myBar");
-        if (myBar) {
-          myBar.style.width = scrolled + "%";
-        }
-      }
+      const myBar = document.getElementById("myBar");
+      if (myBar) myBar.style.width = scrolled + "%";
     });
   }
   updateScrollProgress();
 
-  /** Attaches links to headings in the document,
-   *  allowing sharing of sections easily */
   function addHeadingLinks() {
     const headings = Array.from(
       document.querySelectorAll("h2, h3, h4, h5, h6")
@@ -220,7 +223,6 @@ const nextPost =
       link.className =
         "heading-link ms-2 no-underline opacity-75 md:opacity-0 md:group-hover:opacity-100 md:focus:opacity-100";
       link.href = "#" + heading.id;
-
       const span = document.createElement("span");
       span.ariaHidden = "true";
       span.innerText = "#";
@@ -230,58 +232,32 @@ const nextPost =
   }
   addHeadingLinks();
 
-  /** Attaches copy buttons to code blocks in the document,
-   * allowing users to copy code easily. */
   function attachCopyButtons() {
     const copyButtonLabel = "Copy";
     const codeBlocks = Array.from(document.querySelectorAll("pre"));
-
     for (const codeBlock of codeBlocks) {
       const wrapper = document.createElement("div");
       wrapper.style.position = "relative";
-
-      // Check if --file-name-offset custom property exists
-      const computedStyle = getComputedStyle(codeBlock);
       const hasFileNameOffset =
-        computedStyle.getPropertyValue("--file-name-offset").trim() !== "";
-
-      // Determine the top positioning class
-      const topClass = hasFileNameOffset
-        ? "top-(--file-name-offset)"
-        : "-top-3";
-
-      const copyButton = document.createElement("button");
-      copyButton.className = `copy-code absolute end-3 ${topClass} rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;
-      copyButton.innerHTML = copyButtonLabel;
+        getComputedStyle(codeBlock).getPropertyValue("--file-name-offset").trim() !== "";
+      const topClass = hasFileNameOffset ? "top-(--file-name-offset)" : "-top-3";
+      const btn = document.createElement("button");
+      btn.className = `copy-code absolute end-3 ${topClass} rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;
+      btn.innerHTML = copyButtonLabel;
       codeBlock.setAttribute("tabindex", "0");
-      codeBlock.appendChild(copyButton);
-
-      // wrap codebock with relative parent element
+      codeBlock.appendChild(btn);
       codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
       wrapper.appendChild(codeBlock);
-
-      copyButton.addEventListener("click", async () => {
-        await copyCode(codeBlock, copyButton);
+      btn.addEventListener("click", async () => {
+        const text = codeBlock.querySelector("code")?.innerText ?? "";
+        await navigator.clipboard.writeText(text);
+        btn.innerText = "Copied";
+        setTimeout(() => (btn.innerText = copyButtonLabel), 700);
       });
-    }
-
-    async function copyCode(block, button) {
-      const code = block.querySelector("code");
-      const text = code?.innerText;
-
-      await navigator.clipboard.writeText(text ?? "");
-
-      // visual feedback that task is completed
-      button.innerText = "Copied";
-
-      setTimeout(() => {
-        button.innerText = copyButtonLabel;
-      }, 700);
     }
   }
   attachCopyButtons();
 
-  /* Go to page start after page swap */
   document.addEventListener("astro:after-swap", () =>
     window.scrollTo({ left: 0, top: 0, behavior: "instant" })
   );
