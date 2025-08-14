@@ -103,21 +103,15 @@ const nextPost =
       <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" />
 
       {writerName && (
-        <span class="inline-flex items-center gap-1 rounded-full border border-muted bg-muted px-2.5 py-1 text-xs font-semibold text-foreground/90">
-          <span class="rounded-full bg-accent/10 px-1.5 py-0.5 text-[10px] uppercase tracking-wide">
-            Writer
-          </span>
-          <span>{writerName}</span>
-        </span>
-      )}
+  <span class="inline-flex items-center gap-1 rounded-full border border-muted bg-muted px-2.5 py-1 text-xs font-semibold text-foreground/90">
+    <span>{writerName}</span>
+  </span>
+)}
 
       {editorName && (
-        <span class="inline-flex items-center gap-1 rounded-full border border-muted bg-muted px-2.5 py-1 text-xs font-semibold text-foreground/90">
-          <span class="rounded-full bg-accent/10 px-1.5 py-0.5 text-[10px] uppercase tracking-wide">
-            Editor
-          </span>
-          <span>{editorName}</span>
-        </span>
+          <span class="inline-flex items-center gap-1 rounded-full border border-muted bg-muted px-2.5 py-1 text-xs font-semibold text-foreground/90">
+    <span>{editorName}</span>
+  </span>
       )}
 
       <span
