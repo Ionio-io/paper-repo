@@ -3,6 +3,8 @@ author: Ionio AI Research Team
 pubDatetime: 2025-08-07T00:00:00Z
 modDatetime: 2025-08-07T00:00:00Z
 title: A Comparative Study of Quantized Large Language Models
+writer: Manideep
+editor: Pranav Patel
 slug: quantized-llm-benchmark-study
 featured: true
 draft: false
@@ -289,3 +291,4 @@ Leveraging our benchmark methodology and open-source tooling can help you evalua
 [8] Mistral AI. Mistral 7B Instruct Models. Hugging Face. https://huggingface.co/mistralai
 [9] Meta AI. LLaMA 3.3 Models. Meta Blog. https://ai.meta.com/blog/llama-3
 [10] Pan, Q., et al. AutoGPTQ: Quantization Toolkit for Large Language Models. GitHub. https://github.com/PanQiWei/AutoGPTQ
+
