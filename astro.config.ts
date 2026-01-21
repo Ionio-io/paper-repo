@@ -29,11 +29,12 @@ export default defineConfig({
       themes: { light: "min-light", dark: "night-owl" },
       defaultColor: false,
       wrap: false,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       transformers: [
-        transformerFileName({ style: "v2", hideDot: false }),
-        transformerNotationHighlight(),
-        transformerNotationWordHighlight(),
-        transformerNotationDiff({ matchAlgorithm: "v3" }),
+        transformerFileName({ style: "v2", hideDot: false }) as any,
+        transformerNotationHighlight() as any,
+        transformerNotationWordHighlight() as any,
+        transformerNotationDiff({ matchAlgorithm: "v3" }) as any,
       ],
     },
   },
