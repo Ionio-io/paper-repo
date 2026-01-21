@@ -1,5 +1,7 @@
 ---
 author: Ionio AI Research Team
+writer: Manideep
+editor: Pranav Patel
 pubDatetime: 2025-09-15T00:00:00Z
 modDatetime: 2025-09-15T00:00:00Z
 title: Quantized LLM Benchmark Study 2025
