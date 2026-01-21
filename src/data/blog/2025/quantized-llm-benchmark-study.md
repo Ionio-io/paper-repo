@@ -1,17 +1,17 @@
 ---
 author: Ionio AI Research Team
-pubDatetime: 2025-07-30T00:00:00Z
-modDatetime: 2025-07-30T00:00:00Z
-title: 2025 Edge Speech-to-Text Model Benchmark
-slug: edge-stt-model-benchmark
+pubDatetime: 2025-09-15T00:00:00Z
+modDatetime: 2025-09-15T00:00:00Z
+title: Quantized LLM Benchmark Study 2025
+slug: quantized-llm-benchmark-study
 featured: true
 draft: false
 tags:
   - AI
-  - ASR
-  - Whisper
+  - LLM
+  - Quantization
   - Benchmarking
-description: A practical and neutral benchmark of seven leading STT models, including open-source and proprietary APIs, based on real-world transcription challenges and diverse audio.
+description: Comprehensive benchmark study of quantized large language models, evaluating performance metrics, inference speed, and memory efficiency across various quantization techniques.
 ---
 
 ## Table of contents
