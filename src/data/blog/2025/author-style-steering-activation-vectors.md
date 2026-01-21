@@ -1,5 +1,7 @@
 ---
 author: Ionio AI Research Team
+writer: Manideep
+editor: Pranav Patel
 pubDatetime: 2026-01-18T00:00:00Z
 modDatetime: 2026-01-18T00:00:00Z
 title: Author-Style Steering via Contrastive Activation Vectors
