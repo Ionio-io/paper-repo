@@ -46,6 +46,9 @@
     img {
       @apply mx-auto border border-border;
     }
+    .prose .katex-display {
+    @apply text-foreground;
+    }
 
     figcaption {
       @apply opacity-75;
