@@ -100,7 +100,7 @@ This structured format ensures compatibility with activation extraction pipeline
 
 ![Figure 1: Dataset Construction Pipeline](@/assets/images/11.png)
 
-### Figure 1: Dataset Construction Pipeline
+### Dataset Construction Pipeline
 The dataset is compiled into three unified JSONL files corresponding to the LLM used style_pairs_gemini.jsonl, style_pairs_openrouter_claude.jsonl, and style_pairs_openrouter_gpt.jsonl. These merged files provide a consolidated and consistent corpus for computing author-specific activation statistics across multiple stylistic exemplars.
 
 ### Public Release
